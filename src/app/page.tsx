@@ -1,113 +1,149 @@
-import Image from "next/image";
+'use client';
+import {useState} from 'react';
+import Image from 'next/image';
+import {createAccountLink} from "@/app/api";
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+const Home = () => {
+    const stateOptions = ['NY', 'NJ', 'CA', 'FL']
+    const bookOptions = ['Fanduel', 'DraftKings', 'BetMGM', 'Underdog', 'Caesar\'s']
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    const [first, setFirst] = useState('');
+    const [last, setLast] = useState('');
+    const [phone, setPhone] = useState('');
+    const [stateAbbr, setStateAbbr] = useState('');
+    const [book, setBook] = useState('');
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    const onSubmit = () => {
+        // console.log(`first ${first} last ${last} phone ${phone} stateAbbr ${stateAbbr} book ${book}`);
+        const apiResponse = createAccountLink(first, last, phone, stateAbbr, book);
+        console.log(apiResponse);
+    }
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    return (
+        <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+            <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
+                <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
+                    <Image
+                        className='relative my-0 mx-auto'
+                        src='/logo.svg'
+                        alt='Next.js Logo'
+                        width="0"
+                        height="0"
+                        sizes="100vw"
+                        style={{ width: '75%', height: 'auto' }}
+                        priority
+                    />
+                    <h2 className='mt-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
+                        Please fill out all fields and submit
+                    </h2>
+                </div>
+                <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-sm'>
+                    <form action={onSubmit} className='space-y-6'>
+                        <div>
+                            <label htmlFor='first' className='block text-sm font-medium leading-6 text-gray-900'>
+                                First Name
+                            </label>
+                            <div className='mt-2'>
+                                <input
+                                    id='first'
+                                    name='first'
+                                    type='text'
+                                    required
+                                    className='block px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                                    onChange={e => setFirst(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div className='flex items-center justify-between'>
+                                <label htmlFor='password' className='block text-sm font-medium leading-6 text-gray-900'>
+                                    Last Name
+                                </label>
+                            </div>
+                            <div className='mt-2'>
+                                <input
+                                    id='last'
+                                    name='last'
+                                    type='text'
+                                    required
+                                    className='block px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                                    onChange={e => setLast(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div className='flex items-center justify-between'>
+                                <label htmlFor='phone' className='block text-sm font-medium leading-6 text-gray-900'>
+                                    Phone
+                                </label>
+                            </div>
+                            <div className='mt-2'>
+                                <input
+                                    id='phone'
+                                    name='phone'
+                                    type='tel'
+                                    required
+                                    autoComplete='tel'
+                                    className='block px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                                    placeholder='(XXX) XXX-XXXX'
+                                    onChange={e => setPhone(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div className='flex items-center justify-between'>
+                                <label htmlFor='state' className='block text-sm font-medium leading-6 text-gray-900'>
+                                    State
+                                </label>
+                            </div>
+                            <div className='mt-2'>
+                                <select
+                                    id='stateAbbr'
+                                    name='stateAbbr'
+                                    className='block px-2 w-1/3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                                    onChange={e => setStateAbbr(e.target.value)}
+                                >
+                                    <option value=''>Select</option>
+                                    {stateOptions.map(stateAbbr => {
+                                        return (<option key={stateAbbr}
+                                                        value={stateAbbr}>{stateAbbr}</option>);
+                                    })}
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <div className='flex items-center justify-between'>
+                                <label htmlFor='book' className='block text-sm font-medium leading-6 text-gray-900'>
+                                    Sportsbook
+                                </label>
+                            </div>
+                            <div className='mt-2'>
+                                <select
+                                    id='book'
+                                    name='book'
+                                    className='block px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                                    onChange={e => setBook(e.target.value)}
+                                >
+                                    <option value=''>Select</option>
+                                    {bookOptions.map(book => {
+                                        return (<option key={book} value={book}>{book}</option>);
+                                    })}
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <button
+                                type='submit'
+                                className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    );
 }
+
+export default Home;
