@@ -1,7 +1,7 @@
 const baseUrl = 'https://api.savewithhedge.co/v1';
 // const baseUrl = 'http://localhost:8000/v1';
-const authUsername = '';
-const authPassword = '';
+const authUsername = process.env.NEXT_PUBLIC_HEDGE_API_USERNAME;
+const authPassword = process.env.NEXT_PUBLIC_HEDGE_API_PASSWORD;
 const basicAuthEncoded = btoa(`${authUsername}:${authPassword}`);
 
 export const createAccountLink = async (

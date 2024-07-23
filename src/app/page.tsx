@@ -60,16 +60,6 @@ const Home = () => {
 
     return (
         <main className='flex min-h-screen flex-col items-center justify-between p-12'>
-            {activeLink && (
-                <div className='relative top-28 right-96 px-8 py-8'>
-                    <button
-                        className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow'
-                        onClick={onGoBack}
-                    >
-                        Go back to form
-                    </button>
-                </div>
-            )}
             <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-1 lg:px-8'>
                 <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                     <Image
@@ -96,11 +86,22 @@ const Home = () => {
                                 <p className='mt-2 text-center text-xl leading-9 tracking-tight text-red-500'>
                                     Invalid: please fill out all fields
                                 </p>}
-                        </h2>)}
+                        </h2>
+                    )}
+                    {activeLink && (
+                        <div className='relative top-10 text-center px-8 py-8'>
+                            <button
+                                className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow'
+                                onClick={onGoBack}
+                            >
+                                Go back to form
+                            </button>
+                        </div>
+                    )}
                 </div>
                 {!activeLink && (
                     <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-sm'>
-                    <Form
+                        <Form
                             onSubmit={onSubmit}
                             setFirst={setFirst}
                             setLast={setLast}
