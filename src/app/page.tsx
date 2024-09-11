@@ -4,6 +4,8 @@ import Image from 'next/image';
 import {createAccountLink, getBooks, getRegionsForBook} from "@/app/api";
 import Form from "@/app/components/Form";
 
+const SHARP_SPORTS_CHROME_EXT = 'https://chromewebstore.google.com/detail/jbjkingkpiakebpokhndnnmniaafoobe?hl=en-US';
+
 const Home = () => {
     const [books, setBooks] = useState([]);
     const [states, setStates] = useState([]);
@@ -63,7 +65,7 @@ const Home = () => {
             <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-1 lg:px-8'>
                 <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                     <Image
-                        className='relative my-0 mx-auto'
+                        className='mt-8 relative my-0 mx-auto'
                         src='/logo-cropped.svg'
                         alt='Next.js Logo'
                         width="0"
@@ -72,15 +74,28 @@ const Home = () => {
                         style={{width: '75%', height: 'auto'}}
                         priority
                     />
+                    <div>
+                        <p className='mt-12 text-center text-xl font-medium leading-9 tracking-tight'>
+                            This onboarding form must be completed on a desktop Chrome browser. Mobile will not be
+                            compatible.
+                        </p>
+                        <p className='mt-6 text-center text-lg font-light leading-9 tracking-tight'>
+                            On form completion, you will be directed to our partner website (Sharp Sports) and prompted to download a <a
+                            href={SHARP_SPORTS_CHROME_EXT} rel="noopener noreferrer" target="_blank"
+                            className='text-blue-600 dark:text-blue-500 hover:underline'>Sharp
+                            Sports Chrome extension</a>, used to authenticate to all major sportsbooks. This step is
+                            necessary for allowing us access to your sportsbook history.
+                        </p>
+                    </div>
                     {activeLink ? (
-                        <h2 className='mt-20 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
+                        <h2 className='mt-20 text-center text-2xl font-medium leading-9 tracking-tight text-gray-900'>
                             Please login to your sportsbook by clicking
                             <a href={activeLink}
                                className='ml-1 text-blue-600 dark:text-blue-500 hover:underline'>here</a>
                         </h2>
 
                     ) : (
-                        <h2 className='mt-20 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
+                        <h2 className='mt-20 text-center text-2xl font-medium leading-9 tracking-tight text-gray-900'>
                             Please fill out all fields and submit
                             {showSelectionError &&
                                 <p className='mt-2 text-center text-xl leading-9 tracking-tight text-red-500'>
