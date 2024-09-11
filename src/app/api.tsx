@@ -11,7 +11,7 @@ export const createAccountLink = async (
     stateAbbr: string,
     book: string
 ) => {
-    const url = 'https://api.savewithhedge.co/v1/bettors/link';
+    const url = baseUrl.concat('/bettors/link');
     const body = {
         'first': first,
         'last': last,
