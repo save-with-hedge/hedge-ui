@@ -74,19 +74,20 @@ const Home = () => {
                         style={{width: '75%', height: 'auto'}}
                         priority
                     />
-                    <div>
+                    {!activeLink && <div>
                         <p className='mt-12 text-center text-xl font-medium leading-9 tracking-tight'>
                             This onboarding form must be completed on a desktop Chrome browser. Mobile will not be
                             compatible.
                         </p>
                         <p className='mt-6 text-center text-lg font-light leading-9 tracking-tight'>
-                            On form completion, you will be directed to our partner website (Sharp Sports) and prompted to download a <a
+                            On form completion, you will be directed to our partner website (Sharp Sports) and prompted
+                            to download a <a
                             href={SHARP_SPORTS_CHROME_EXT} rel="noopener noreferrer" target="_blank"
                             className='text-blue-600 dark:text-blue-500 hover:underline'>Sharp
                             Sports Chrome extension</a>, used to authenticate to all major sportsbooks. This step is
                             necessary for allowing us access to your sportsbook history.
                         </p>
-                    </div>
+                    </div>}
                     {activeLink ? (
                         <h2 className='mt-20 text-center text-2xl font-medium leading-9 tracking-tight text-gray-900'>
                             Please login to your sportsbook by clicking
